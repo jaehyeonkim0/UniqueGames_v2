@@ -63,9 +63,9 @@ a:hover {
 	text-decoration: underline;
 }
 
-a:visited {
-	color: #DDDDDD;
-}
+/*a:visited {*/
+/*	color: #DDDDDD;*/
+/*}*/
 
 /* public button style */
 .btn-style {

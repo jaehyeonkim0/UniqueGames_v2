@@ -1,3 +1,6 @@
+let code = "";
+let output = "";
+let request = new XMLHttpRequest();
 function memberIdPassCheck() {
 	var memberId = document.querySelector("input[name='memberId']");
 	var password = document.querySelector("input[name='password']");
@@ -61,12 +64,9 @@ function mypagePassCheckVisible() {
 	}
 }
 
-var code = "";
 
 function sendEmail() { //회원가입, 개인, 법인 마이페이지
-	var email = document.querySelector("input[name='email']").value;
-
-	var request = new XMLHttpRequest();
+	let email = document.querySelector("input[name='email']").value;
 	request.open("POST", "mailCheck", true);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -74,7 +74,19 @@ function sendEmail() { //회원가입, 개인, 법인 마이페이지
 		if (request.readyState === 4 && request.status === 200) {
 			alert("인증번호가 전송되었습니다");
 			code = request.responseText;
-			document.querySelector("#email-auth-check").disabled = false;
+
+			var emailAuthCheckInput = document.getElementById('email-auth-check');
+			if (!emailAuthCheckInput) { // 입력 필드가 존재하지 않을 때만 생성
+				output += "<li>";
+				output += "<input id='email-auth-check' name='email-auth-check' placeholder='인증번호 6자리'>";
+				output += "</li>";
+
+				var nameInput = document.querySelector(".button-style");
+				nameInput.insertAdjacentHTML("afterend", output);
+
+				emailAuthCheckInput = document.getElementById('email-auth-check');
+				emailAuthCheckInput.addEventListener('input', checkEmailAuth);
+			}
 		}
 	};
 	request.send("email=" + email);
@@ -82,7 +94,7 @@ function sendEmail() { //회원가입, 개인, 법인 마이페이지
 
 function checkEmailAuth() { //회원가입, 개인, 법인 마이페이지
 	var inputCode = document.querySelector('#email-auth-check').value;
-	var resultMsg = document.querySelector('#emailAuth');
+	var resultMsg = document.querySelector('.messageStyle2');
 
 	if (inputCode === code) {
 		resultMsg.textContent = '인증번호가 일치합니다.';
@@ -97,6 +109,48 @@ function checkEmailAuth() { //회원가입, 개인, 법인 마이페이지
 		resultMsg.style.color = 'rgb(255, 0, 0)';
 		resultMsg.style.display = 'inline';
 	}
+}
+
+
+function sendIdToEmail() {
+	let email = document.querySelector("input[name='email']").value;
+	let type2 = document.querySelector("input[name='type2']").value;
+
+	request.open("POST", "sendIdToEmail", true);
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+	request.onreadystatechange = function () {
+		if (request.readyState === 4) {
+			if (request.status === 200) {
+				alert("귀하의 이메일 주소로 가입된 아이디를 발송 하였습니다");
+				console.log(request.responseText);
+			} else {
+				alert("오류가 발생했습니다.<br>잠시후 다시 이용해주시기 바랍니다")
+			}
+		}
+	};
+	request.send("email=" + encodeURIComponent(email) + "&type2=" + encodeURIComponent(type2));
+}
+
+function sendPassToEmail() {
+	let email = document.getElementById("email").value;
+	let id = document.getElementById("id").value;
+	console.log(email);
+	let type2 = document.querySelector("input[name='type2']").value;
+	request.open("POST", "sendPassToEmail", true);
+	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+	request.onreadystatechange = function () {
+		if (request.readyState === 4) {
+			if (request.status === 200) {
+				alert("귀하의 이메일 주소로 임시 비밀번호를 발송 하였습니다");
+				console.log(request.responseText);
+			} else {
+				alert("오류가 발생했습니다.<br>잠시후 다시 이용해주시기 바랍니다")
+			}
+		}
+	};
+	request.send("email=" + encodeURIComponent(email) + "&id=" + encodeURIComponent(id) + "&type2=" + encodeURIComponent(type2));
 }
 
 function companyIdPassCheck() {
@@ -147,5 +201,4 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (selectedTab) {
 		document.getElementById(selectedTab).checked = true;
 	}
-	document.querySelector('#email-auth-check').addEventListener('change', checkEmailAuth);
 });

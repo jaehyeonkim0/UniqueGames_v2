@@ -96,10 +96,9 @@ public class MemberService extends FileUploadUtil {
         return memberMapper.phoneCheck1(param);
     }
 
-    public String findId(String email, String name, String type2) {
+    public String findId(String email, String type2) {
         Map param = new HashMap();
         param.put("email", email);
-        param.put("name", name);
         param.put("type2", type2);
         return memberMapper.findId(param);
     }

@@ -46,5 +46,7 @@ public interface MemberMapper {
     String findPass(Map param);
     int delete1(Map param);
 
+    int changePassword(Map param);
+
 
 }

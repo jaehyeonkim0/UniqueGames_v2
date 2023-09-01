@@ -55,7 +55,7 @@
         </li>
         <li>
           <input type="text" name="memberId" id="id" placeholder="영문,숫자 5~10자리" tabindex="1">
-          <button type="button" class="button-style" id="check-btn-style">중복 체크</button>
+          <button type="button" class="button-style-id" id="check-btn-style">중복 체크</button>
         </li>
         <li class="must-insert-1">
           <p class="label-dot-1">*</p>
@@ -83,12 +83,12 @@
           <p class="label-dot">*</p>
           <label>이메일</label>
           <span id="emailMsg" class="messageStyle1"></span>
-          <span id="emailAuth" class="messageStyle1"></span>
+          <span id="emailAuth" class="messageStyle2"></span>
         </li>
         <li>
           <input type="text" name="email" tabindex="5">
           <button type="button" class="button-style" id="email-btn-style" onclick="sendEmail()">인증 번호</button>
-          <input type="text" name="email-auth-check" id="email-auth-check" placeholder="인증번호 6자리" th:disabled="true">
+<!--      <input type="text" name="email-auth-check" id="email-auth-check" placeholder="인증번호 6자리" th:disabled="true">-->
         </li>
         <li>
           <label>주소</label>

@@ -48,7 +48,7 @@
 			SELECT COMPANY_ID FROM TB_COMPANY
 		</if>
 		<where>
-			EMAIL = #{email} AND NAME = #{name}
+			EMAIL = #{email}
 		</where>
 	</select>
 
@@ -78,4 +78,13 @@
 			DELETE FROM TB_COMPANY WHERE COMPANY_ID = #{id} AND PASSWORD = #{password}
 		</if>
 	</delete>
+
+	<update id="changePassword" parameterType="map">
+		<if test="type2 == 'member'">
+			UPDATE TB_MEMBER SET PASSWORD = #{newpassword} WHERE MEMBER_ID = #{id}
+		</if>
+		<if test="type2 == 'company'">
+			UPDATE TB_COMPANY SET PASSWORD = #{newpassword} WHERE COMPANY_ID = #{id}
+		</if>
+	</update>
 </mapper>   

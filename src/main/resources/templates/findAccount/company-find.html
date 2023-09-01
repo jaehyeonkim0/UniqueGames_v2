@@ -28,18 +28,16 @@
   <label for="findPwd" class="findPwd-tab">비밀번호 찾기</label>
 
   <input type="hidden" name="type2" th:value="company">
-  <form action="findId" name="findIdForm" method="post" id="findIdForm">
+  <form name="findIdForm" method="post" id="findIdForm">
     <ul>
+      <li class="find-li">
+        <label>이메일</label>
+      </li>
       <li>
         <input type="text" name="email" placeholder="이메일">
-        <span class="msgName"></span>
       </li>
       <li>
-        <input type="text" name="name" placeholder="이름">
-        <span class="msgPhone"></span>
-      </li>
-      <li>
-        <button type="button" class="button-gradient" id="findIdButton">아이디 찾기</button>
+        <button type="button" class="button-gradient" onclick="sendIdToEmail()">이메일 전송</button>
       </li>
       <li>
         <a th:href = "@{/login(selectedTab=company-login)}" class="toLogin">return to login</a>
@@ -47,23 +45,22 @@
     </ul>
   </form>
 
-  <form action="changecpass" name="findPwdForm" method="post" id="findPwdForm">
-    <p class="intro-2">비밀번호를 찾으려는 아이디</p>
+  <form name="findPwdForm" method="post" id="findPwdForm">
     <ul>
-      <li>
-        <input type="text" name="email" id="email" placeholder="이메일">
-        <span class="msgclass"></span>
+      <li class="find-li">
+        <label>아이디</label>
       </li>
       <li>
         <input type="text" name="companyId" id="id" placeholder="아이디">
-        <span class="msgName1"></span>
+      </li>
+      <li class="find-li">
+        <label>이메일</label>
       </li>
       <li>
-        <input type="text" name="name" id="name" placeholder="이름">
-        <span class="msgPhone1"></span>
+        <input type="text" name="email" id="email" placeholder="이메일">
       </li>
       <li>
-        <button type="button" class="button-gradient" id="findPassButton">비밀번호 찾기</button>
+        <button type="button" class="button-gradient" onclick="sendPassToEmail()">이메일 전송</button>
       </li>
       <li>
         <a th:href = "@{/login(selectedTab=company-login)}" class="toLogin">return to login</a>

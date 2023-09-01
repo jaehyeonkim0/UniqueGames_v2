@@ -35,10 +35,6 @@ input[name="phone2"], input[name='phone3'] {
 	text-indent: 10px;
 }
 
-input[name="email-auth-check"] {
-	margin-top: -20px;
-}
-
 /* Button */
 .button-gradient, .find-button-gradient {
 	border: none;
@@ -53,7 +49,7 @@ input[name="email-auth-check"] {
 	font-size: 20px;
 }
 
-.button-style {
+.button-style, .button-style-id {
 	width: 80px;
 	height: 30px;
 	background: #393939;
@@ -76,12 +72,10 @@ input[name="email-auth-check"] {
 	border-radius: 3px;
 }
 
-.button-style {
+.button-style, .button-style-id {
 	width: 90px;
 	height: 40px;
-	position: relative;
-	top: -55px;
-	left: 405px;
+	margin: 17px 0 0 10px;
 }
 
 #mypage-email-btn, #mypage-addr-btn {
@@ -295,16 +289,12 @@ div.agreement3 {
 	left: 5px;
 }
 
-/* Join CSS */
-li.address-input {
-	margin-top: -40px;
-}
 
-#content-2, #newPasswordForm {
-	width: 40%;
+#content-2 {
+	width: 50%;
 	margin: auto;
 	text-align: left;
-	padding-left: 45px;
+	padding-left: 160px;
 }
 
 .agreement-box {
@@ -347,27 +337,15 @@ li.address-input {
 	position: relative;
 }
 
-.must-insert-1 {
-	margin-top: -28px;
-}
 
-/*#idMsg, #pwdMsg, #pwdMsg-check, #nameMsg, #emailMsg, #emailAuth,*/
-/*#phoneMsg, #c-idMsg, #c-pwdMsg, #c-pwdMsg-check, #c-nameMsg,*/
-/*#c-emailMsg, #c-emailAuth, #c-phoneMsg {*/
-/*	position: relative;*/
-/*	top: -1.5px;*/
-/*	left: 5px;*/
-/*	margin-right: 5px;*/
-/*}*/
-
-.messageStyle, .messageStyle1 {
+.messageStyle, .messageStyle1, .messageStyle2 {
 	position: relative;
 	top: -1.5px;
 	left: 5px;
 	margin-right: 5px;
 }
 
-.messageStyle1 {
+.messageStyle1, .messageStyle2 {
 	left: 0px;
 }
 
@@ -457,7 +435,7 @@ li.address-input {
 #individual-login-tab, #company-login-tab, #update-tab, #order-tab {
 	display: inline-block;
 	margin: 0 0 5px 0;
-	padding: 15px 63px;
+	padding: 15px 65px;
 	font-weight: 600;
 	text-align: center;
 	color: #bbb;
@@ -492,7 +470,7 @@ li.address-input {
 	padding-bottom: 60px;
 }
 
-.content-1, .content-4, .content-5, .content-mypage {
+.content-1, .content-mypage{
 	width: 1100px;
 	margin: auto;
 	text-align: center;
@@ -500,7 +478,7 @@ li.address-input {
 }
 
 .findId-tab, .findPwd-tab {
-	padding: 15px 51px;
+	padding: 15px 54px;
 }
 
 .sidebar {
@@ -726,4 +704,11 @@ ul {
 
 .phoneNumInput {
 	width: 309px;
+}
+
+.find-li {
+	width: 36%;
+	margin: auto;
+	text-align: left;
+	padding-top: 5px;
 }
