@@ -72,7 +72,7 @@ function sendEmail() { //회원가입, 개인, 법인 마이페이지
 
 	request.onreadystatechange = function () {
 		if (request.readyState === 4 && request.status === 200) {
-			alert("인증번호가 전송되었습니다");
+			alert("인증번호가 전송되었습니다.");
 			code = request.responseText;
 
 			var emailAuthCheckInput = document.getElementById('email-auth-check');
