@@ -8,6 +8,8 @@ import com.uniqueGames.service.MailSendService;
 import com.uniqueGames.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,12 +45,19 @@ public class CheckRestController {
      * 아이디 찾기 : 메일로 아이디 전송
      * @param email 입력한 이메일
      * @param type2 개인 / 법인 구분 String
+     *
      */
     @PostMapping("sendIdToEmail")
-    public String sendIdToEmail(@RequestParam("email") String email,
-                                @RequestParam("type2") String type2) {
-        String id = memberService.findId(email, type2);
-        return mailSendService.sendIdToEmail(email, id);
+    public ResponseEntity<Object> sendIdToEmail(@RequestParam("email") String email,
+                                                @RequestParam("type2") String type2) {
+        int findingResult = memberService.findUserByEmail(email, type2);
+        if(findingResult == 1) {
+            String id = memberService.findId(email, type2);
+            mailSendService.sendIdToEmail(email, id);
+            return ResponseEntity.ok(id);
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     /**
@@ -58,10 +67,17 @@ public class CheckRestController {
      * @param type2 개인 / 법인 구분 String
      */
     @PostMapping("sendPassToEmail")
-    public String sendPassToEmail(@RequestParam("email") String email,
+    public ResponseEntity<Object> sendPassToEmail(@RequestParam("email") String email,
                                   @RequestParam("id") String id,
                                   @RequestParam("type2") String type2) {
-        return mailSendService.sendPassToEmail(email, id, type2);
+        int findingResult = memberService.findUserByIdEmail(email, id, type2);
+        if(findingResult == 1) {
+            mailSendService.sendPassToEmail(email, id, type2);
+            return ResponseEntity.ok(id);
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
     }
 
     /**

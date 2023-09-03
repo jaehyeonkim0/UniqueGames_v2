@@ -124,8 +124,8 @@ function sendIdToEmail() {
 			if (request.status === 200) {
 				alert("귀하의 이메일 주소로 가입된 아이디를 발송 하였습니다");
 				console.log(request.responseText);
-			} else {
-				alert("오류가 발생했습니다.<br>잠시후 다시 이용해주시기 바랍니다")
+			} else if (request.status === 404) {
+				alert("입력한 회원정보로 가입한 계정이 없습니다\n회원가입 먼저 진행해주십시오");
 			}
 		}
 	};
@@ -145,8 +145,8 @@ function sendPassToEmail() {
 			if (request.status === 200) {
 				alert("귀하의 이메일 주소로 임시 비밀번호를 발송 하였습니다");
 				console.log(request.responseText);
-			} else {
-				alert("오류가 발생했습니다.<br>잠시후 다시 이용해주시기 바랍니다")
+			} else if (request.status === 404) {
+				alert("입력한 회원정보로 가입한 계정이 없습니다\n회원가입 먼저 진행해주십시오");
 			}
 		}
 	};

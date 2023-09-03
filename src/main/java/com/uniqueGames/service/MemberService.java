@@ -119,4 +119,19 @@ public class MemberService extends FileUploadUtil {
         param.put("type2", type2);
         return memberMapper.delete1(param);
     }
+
+    public int findUserByEmail(String email, String type2) {
+        Map param = new HashMap();
+        param.put("email", email);
+        param.put("type2", type2);
+        return memberMapper.findUserByEmail(param);
+    }
+
+    public int findUserByIdEmail(String email, String id, String type2) {
+        Map param = new HashMap();
+        param.put("email", email);
+        param.put("id", id);
+        param.put("type2", type2);
+        return memberMapper.findUserByIdEmail(param);
+    }
 }

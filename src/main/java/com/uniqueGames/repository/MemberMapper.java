@@ -48,5 +48,9 @@ public interface MemberMapper {
 
     int changePassword(Map param);
 
+    int findUserByEmail(Map param);
+
+    int findUserByIdEmail(Map param);
+
 
 }

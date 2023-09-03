@@ -78,11 +78,11 @@ input[name="phone2"], input[name='phone3'] {
 	margin: 17px 0 0 10px;
 }
 
-#mypage-email-btn, #mypage-addr-btn {
-	position: relative;
-	top: -57px;
-	left: 180px;
-}
+/*#mypage-email-btn, #mypage-addr-btn {*/
+/*	position: relative;*/
+/*	top: -57px;*/
+/*	left: 180px;*/
+/*}*/
 
 a:visited {
 	color: initial;
@@ -589,15 +589,6 @@ li#active {
 	border: 1px solid rgb(217, 217, 217);
 	border-top: 2px solid #2e9cdf;
 	border-bottom: none;
-}
-
-/*.mypage-insert {*/
-/*	margin-right: 335px;*/
-/*}*/
-
-.mypage-insert-1 {
-	margin-top: -38px;
-	text-align: left;
 }
 
 .jointab {

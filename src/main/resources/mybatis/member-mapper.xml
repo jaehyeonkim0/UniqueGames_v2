@@ -87,4 +87,27 @@
 			UPDATE TB_COMPANY SET PASSWORD = #{newpassword} WHERE COMPANY_ID = #{id}
 		</if>
 	</update>
+
+	<select id="findUserByEmail" parameterType="map">
+		SELECT COUNT(*) FROM
+		<if test="type2 == 'member'">
+			TB_MEMBER
+		</if>
+		<if test="type2 == 'company'">
+			TB_COMPANY
+		</if>
+		<where>
+			EMAIL = #{email}
+		</where>
+	</select>
+
+	<select id="findUserByIdEmail" parameterType="map">
+		SELECT COUNT(*) FROM
+		<if test="type2 == 'member'">
+			TB_MEMBER WHERE MEMBER_ID = #{id} AND EMAIL= #{email}
+		</if>
+		<if test="type2 == 'company'">
+			TB_COMPANY WHERE COMPANY_ID = #{id} AND EMAIL= #{email}
+		</if>
+	</select>
 </mapper>   
