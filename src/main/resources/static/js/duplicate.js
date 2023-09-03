@@ -74,7 +74,7 @@ $(document).ready(function(){
     /**mypage - newpass*/
     $("#mypageChangePass").click(function () {
         if (password.val() == "") {
-            alert("현재 비밀번호를 입력하세요");
+            alert("현재 비밀번호를 입력하세요!");
             password.focus();
             return false;
         } else if (newpassword.val() == "") {
