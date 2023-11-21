@@ -48,7 +48,8 @@ $(document).ready(function(){
     });
 
     $(email).change(function(){
-        if (email.val() !== "" && emailAuthCheck.val() === "") {
+        if (email.val() !== "") {
+            console.log("이메일 입력창에 입력했음" + email.val());
             // email 값이 변경되고, email-auth-check 값이 null (빈 문자열)인 경우 validation check 실패
             // 여기서 필요한 validation 체크를 수행하면 됩니다.
             if(email.val() == memberEmail.val() || email.val() == companyEmail.val()) {
