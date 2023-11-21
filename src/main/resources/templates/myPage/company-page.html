@@ -74,13 +74,8 @@
         </li>
         <li class="mypage-insert">
           <input type="text" name="email" th:value="${company?.email}">
-          <input type="hidden" th:value="${company?.email}" id="companyEmail">
-        </li>
-        <li>
           <button type="button" class="button-style" id="mypage-email-btn" onclick="sendEmail()">인증 번호</button>
-        </li>
-        <li class="mypage-insert">
-          <input type="text" name="email-auth-check" id="email-auth-check" placeholder="인증번호 6자리" th:disabled="true">
+          <input type="hidden" th:value="${company?.email}" id="companyEmail">
         </li>
         <li class="mypage-insert">
           <label>휴대전화</label><span id="phoneMsg" class="messageStyle"></span>
@@ -105,12 +100,10 @@
         </li>
         <li th:unless="${company?.addr1 == null}" class="mypage-insert">
           <input type="text" name="addr1" th:value="${company?.addr1}">
+          <button type="button" class="button-style" id="mypage-addr-btn" onclick="findAddress()">주소 검색</button>
           <input type="hidden" th:value="${company?.addr1}" id="companyAddr1">
         </li>
-        <li>
-          <button type="button" class="button-style" id="mypage-addr-btn" onclick="findAddress()">주소 검색</button>
-        </li>
-        <li class="mypage-insert-1">
+        <li class="mypage-insert">
           <label>상세 주소</label>
         </li>
         <li th:if="${company?.addr2 == null}" class="mypage-insert">

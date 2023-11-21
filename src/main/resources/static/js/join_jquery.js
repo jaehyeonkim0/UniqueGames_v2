@@ -6,18 +6,16 @@ $(document).ready(function() {
 	let email = $("input[name='email']");				let emailMsg = $("#emailMsg");		let emailAuthCheck = $("#email-auth-check");
 	let chkall = $("#chk-circle");						let chkagree = $("input[name='chk-agree']");
 
-	/**개인 제이쿼리*/
+	/**
+	 * 아이디 중복체크
+	 */
 	$("#check-btn-style").click(function () {
 		if (id.val() == "") {
 			idMsg.text("아이디를 입력하세요").css("font-size", "11px").css("color", "red").css("display", "inline");
 			id.focus();
 			return false;
-		} else if (!idCheck1(id.val())) {
-			idMsg.text("영문 또는 숫자로 작성해주세요").css("color", "red").css("font-size", "11px").css("display", "inline");
-			id.focus();
-			return false;
 		} else if (!idCheck2(id.val())) {
-			idMsg.text("5~10자리로 작성해주세요").css("color", "red").css("font-size", "11px").css("display", "inline");
+			idMsg.text("영문 또는 숫자 포함 5~10자리로 작성해주세요").css("color", "red").css("font-size", "11px").css("display", "inline");
 		} else {
 			$.ajax({
 				url: "idcheck1",
@@ -41,7 +39,9 @@ $(document).ready(function() {
 		}
 	});
 
-	/**비밀번호, 비밀번호 확인 동일체크 blur*/
+	/**
+	 * 비밀번호, 비밀번호 확인 동일체크 blur
+	 */
 	$(password)
 		.add(passwordCheck)
 		.blur(function () {
@@ -56,7 +56,9 @@ $(document).ready(function() {
 			}
 		});
 
-	/** Agreement **/
+	/**
+	 * 전체 동의 / 해제
+	 */
 	chkall.click(function () {
 		if (chkall.is(":checked"))
 			chkagree.prop("checked", true);
@@ -64,6 +66,9 @@ $(document).ready(function() {
 			chkagree.prop("checked", false);
 	});
 
+	/**
+	 * 별개로 체크 시, 전체가 체크되어야 전체 동의 버튼 체크 활성화
+	 */
 	chkagree.click(function () {
 		var total = chkagree.length;
 		var checked = $("input[name='chk-agree']:checked").length;
@@ -75,7 +80,9 @@ $(document).ready(function() {
 		}
 	});
 
-	/** Agreement - Detail **/
+	/**
+	 * 동의 항목 자세히 보기
+	 */
 	$("a").click(function () {
 		$(".modal").css("display", "block");
 
@@ -88,7 +95,9 @@ $(document).ready(function() {
 		}
 	});
 
-	/**Agreement - Detail - Close*/
+	/**
+	 * 동의 항목 자세히 보기 닫기
+	 */
 	$(document).on("click", "button[name='btn-agreement']", function () {
 		$(".modal").css("display", "none");
 	});
@@ -99,7 +108,7 @@ $(document).ready(function() {
 			id.focus();
 			return false;
 		} else if (idMsg.text() == "" || idMsg.css("color") == "rgb(255, 0, 0)") {
-			alert("아이디 중복체크1를 해주세요");
+			alert("아이디 중복체크를 해주세요");
 			id.focus();
 			return false;
 		} else if (password.val() == "") {

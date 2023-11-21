@@ -1,3 +1,11 @@
+/**
+ * URL.createObjectURL() ->  Blob을 생성하면 브라우저는 임시적인 URL을 생성
+ * 이 URL은 일반적으로 blob:으로 시작하며, 해당 Blob 객체를 가리키는 고유한 식별자를 포함
+ * 이 URL은 Blob 객체를 브라우저에서 참조할 수 있도록 해주는 것으로,
+ * 일반적으로 이미지 태그(<img>), 비디오 태그(<video>), 또는 다른 요소의 src 속성에
+ * 이 URL을 설정하여 Blob으로부터 미리보기를 제공하거나 표시할 수 있습니다.
+ */
+
 $(document).ready(function () {
 
 $("#profile-picture-img").change(function(){
@@ -17,7 +25,7 @@ $("#profile-picture-img").change(function(){
             .css("display", "inline-block");
 
     } else if(param == "mypage") {
-        let output = "<button type='text' class='profileImgConfirm' style='margin-right: 5px'>확인</button>" +
+        let output = "<button type='text' class='profileImgConfirm' style='margin-right: 5px'>변경</button>" +
             "<button type='button' class='cancelProfileButton' name='cancelProfileButton' style='margin-right: 5px'>기본값</button>" +
             "<button type='button' class='profile-no-change'>변경 안함</button>";
         $(".cancelProfile").html(output).css("text-align", "center");

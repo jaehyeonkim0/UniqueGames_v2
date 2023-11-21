@@ -8,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @Slf4j
@@ -23,15 +26,15 @@ public class JoinController {
 		this.companyMemberService = companyMemberService;
 	}
 	@GetMapping("join")
-	public String join() {
+	public String join(Member member) {
 		return "join/member-join";
 	}
 
 	@GetMapping("joincompany")
-	public String companyJoin() { return "join/company-join"; }
+	public String companyJoin(Company company) { return "join/company-join"; }
 
 	@PostMapping("join")
-	public String joinProc(Member member, Model model) {
+	public String joinProc(@Valid Member member, Errors errors, Model model) {
 		String fileName = memberService.fileCheck(member.getFile());
 		member.setProfileImg(fileName);
 		int result = memberService.save(member);
