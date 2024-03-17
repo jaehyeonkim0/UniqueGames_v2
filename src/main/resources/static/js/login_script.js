@@ -115,6 +115,9 @@ function checkEmailAuth() { //회원가입, 개인, 법인 마이페이지
 function sendIdToEmail() {
 	let email = document.querySelector("input[name='email']").value;
 	let type2 = document.querySelector("input[name='type2']").value;
+	let emailAuth = document.querySelector("#emailAuth");
+	console.log(email);
+	console.log(type2);
 
 	request.open("POST", "sendIdToEmail", true);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -125,7 +128,9 @@ function sendIdToEmail() {
 				alert("귀하의 이메일 주소로 가입된 아이디를 발송 하였습니다");
 				console.log(request.responseText);
 			} else if (request.status === 404) {
-				alert("입력한 회원정보로 가입한 계정이 없습니다\n회원가입 먼저 진행해주십시오");
+				emailAuth.innerHTML = "입력한 회원정보로 가입한 계정이 없습니다";
+				emailAuth.style.color = "red";
+				emailAuth.style.fontSize = "11px";
 			}
 		}
 	};
@@ -135,6 +140,7 @@ function sendIdToEmail() {
 function sendPassToEmail() {
 	let email = document.getElementById("email").value;
 	let id = document.getElementById("id").value;
+	let emailAuth = document.querySelector("#emailAuth2");
 	console.log(email);
 	let type2 = document.querySelector("input[name='type2']").value;
 	request.open("POST", "sendPassToEmail", true);
@@ -146,7 +152,9 @@ function sendPassToEmail() {
 				alert("귀하의 이메일 주소로 임시 비밀번호를 발송 하였습니다");
 				console.log(request.responseText);
 			} else if (request.status === 404) {
-				alert("입력한 회원정보로 가입한 계정이 없습니다\n회원가입 먼저 진행해주십시오");
+				emailAuth2.innerHTML = "입력한 회원정보로 가입한 계정이 없습니다";
+				emailAuth2.style.color = "red";
+				emailAuth2.style.fontSize = "11px";
 			}
 		}
 	};

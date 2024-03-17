@@ -113,6 +113,7 @@ public class MailSendService {
 			helper.setTo(toMail);
 			helper.setSubject(title);
 			helper.setText(content,true);
+			// 포함된 텍스트가 HTML이라는 의미로 true 플래그를 사용한다
 			mailSender.send(message);
 		} catch (MessagingException e) {
 			e.printStackTrace();

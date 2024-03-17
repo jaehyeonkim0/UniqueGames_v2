@@ -33,7 +33,7 @@ public class CheckRestController {
     }
     
     /**
-     * 회원가입 :     메일로 인증번호 전송
+     * 회원가입 : 메일로 인증번호 전송
      * @param email 입력한 이메일
      */
     @PostMapping("mailCheck")
@@ -77,7 +77,6 @@ public class CheckRestController {
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
     }
 
     /**

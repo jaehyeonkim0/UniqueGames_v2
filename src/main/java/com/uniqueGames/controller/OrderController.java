@@ -6,11 +6,14 @@ import com.uniqueGames.model.Member;
 import com.uniqueGames.model.Order;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.uniqueGames.service.GameService;
 import com.uniqueGames.service.MemberService;
 import com.uniqueGames.service.OrderService;
+import lombok.extern.log4j.Log4j2;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@Log4j2
 public class OrderController {
     @Autowired
     OrderService orderService;
@@ -40,6 +44,10 @@ public class OrderController {
         for (String id : checkedList) {
             idList.add(Integer.parseInt(id));
         }
+
+//        idList = Arrays.stream(checkedList).map(str ->
+//                        Integer.parseInt(str)).collect(Collectors.toCollection(ArrayList::new));
+//        idStr = String.join(", ", checkedList);
 
         idStr = orderService.listToString(idList);
         ArrayList<Order> orderList = orderService.getOrderList(idStr);

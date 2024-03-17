@@ -37,6 +37,26 @@ public class LoginController {
 	}
 
 
+	/**
+	 * HTML form의 action에 지정된 표현식은 브라우저가 해당 요청을 생성할 때, 실제 URL을 구성하기 위한 것
+	 * 예를 들어, @{/login(redirectURL=${param.redirectURL})}는 브라우저에서 해당 form을 제출할 때
+	 * Thymeleaf 템플릿 엔진에 의해 실제로 /login으로 매핑되며, 추가적인 URL 매개변수 redirectURL을 가져오게 된다.
+	 *
+	 * 즉, form action이 @{/login(redirectURL=${param.redirectURL})}으로 설정되어 있더라도,
+	 * 실제로는 해당 폼이 /login 엔드포인트로 POST 요청을 보내게되고,
+	 * 컨트롤러에서는 /login으로 지정된 경로의 POST 요청을 처리하게 된다.
+	 *
+	 * 따라서 폼의 action과 컨트롤러 메서드의 경로가 일치하지 않더라도, 실제 요청이 컨트롤러에 의해 처리될 수 있다.
+	 * Thymeleaf의 템플릿 문법을 통해 HTML form의 action 속성을 동적으로 설정할 수 있으며,
+	 * 이는 실제 HTTP 요청을 보내는 데 사용되는 경로를 정의한다.
+	 *
+	 * @param member
+	 * @param company
+	 * @param request
+	 * @param redirectURL
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginOk(@Validated @ModelAttribute Member member, @Validated @ModelAttribute Company company,
 						  HttpServletRequest request, @RequestParam(defaultValue = "/") String redirectURL,
