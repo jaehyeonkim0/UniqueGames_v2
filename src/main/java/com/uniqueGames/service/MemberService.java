@@ -15,15 +15,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-@Repository
 @Service
 public class MemberService extends FileUploadUtil {
 
-    @Autowired
-    private MemberRepositoryMapper memberRepositoryMapper;
+    private MemberMapper memberMapper;
 
     @Autowired
-    private MemberMapper memberMapper;
+    public MemberService(MemberMapper memberMapper) {
+        this.memberMapper = memberMapper;
+    }
 
     @Override
     protected void extractFile(Object obj) {
