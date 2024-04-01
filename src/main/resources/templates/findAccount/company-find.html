@@ -7,7 +7,6 @@
   <link rel="stylesheet" th:href="@{/css/login.css}">
   <script th:src="@{/js/jquery-3.6.4.min.js}"></script>
   <script th:src="@{/js/login_script.js}"></script>
-  <script th:src="@{/js/duplicate.js}"></script>
 </head>
 <body>
 <!--header-->
@@ -28,7 +27,8 @@
   <label for="findPwd" class="findPwd-tab">비밀번호 찾기</label>
 
   <input type="hidden" name="type2" th:value="company">
-  <form name="findIdForm" method="post" id="findIdForm">
+
+  <form id="findIdForm" method="post">
     <ul>
       <li class="find-li">
         <label>이메일</label>
@@ -46,7 +46,7 @@
     </ul>
   </form>
 
-  <form name="findPwdForm" method="post" id="findPwdForm">
+  <form id="findPwdForm" method="post">
     <ul>
       <li class="find-li">
         <label>아이디</label>
@@ -71,68 +71,6 @@
   </form>
 </section>
 
-<div class="modal2">
-  <div class="agreement2" id="agreement-findId">
-    <div class="agreement-content1">
-    </div>
-  </div>
-</div>
-
-<div class="modal3">
-  <div class="agreement3">
-    <div class="agreement-content2">
-    </div>
-  </div>
-</div>
-
-<div class="deleteComplete">
-  <p class="agreement-title">아이디 찾기</p>
-  <span class="delete-span"></span> 님의 아이디 :
-  <span class="find-id-result"></span>
-  <ul>
-    <li>
-      <button type="button" class="find-button-gradient" id="gotoLogin" name="btn-agreement">로그인 하러가기</button>
-      <button type="button" class="find-button-gradient" id="gotoPwd" name="btn-agreement">비밀번호 찾기</button>
-    </li>
-  </ul>
-</div>
-
-<div class="mchangepass">
-  <p class="agreement-title">비밀번호 변경</p>
-  <form action="cchangepass" name="changePassForm" method="post" id="changePassForm">
-    <div>
-      <ul>
-        <li>
-          <input type="hidden" name="companyId" id="id2" th:value="${companyId}">
-        </li>
-        <li>
-          <input type="password" name="newpassword" placeholder="새로운 비밀번호">
-        </li>
-        <li>
-          <input type="password" name="newpassword-check" placeholder="새로운 비밀번호 확인">
-        </li>
-        <li>
-          <button type="button" class="button-gradient" onclick="changePassword()">비밀번호 변경</button>
-        </li>
-        <li>
-          <a th:href = "@{/login(selectedTab=company-login)}" class="toLogin">return to login</a>
-        </li>
-      </ul>
-    </div>
-  </form>
-</div>
-
-<div class="find-id-none">
-  <p class="agreement-title">아이디/비밀번호 찾기</p>
-  <span class="delete-span">등록된 회원정보가 없습니다</span>
-  <ul>
-    <li>
-      <button type="button" class="find-button-gradient" id="gotoFind" name="btn-agreement">다시입력</button>
-      <button type="button" class="find-button-gradient" id="gotoJoin" name="btn-agreement">회원가입</button>
-    </li>
-  </ul>
-</div>
-<!--footer-->
 <div th:replace="main/footer::footerFragment"></div>
 </body>
 </html>

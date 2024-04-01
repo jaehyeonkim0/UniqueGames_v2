@@ -116,8 +116,6 @@ function sendIdToEmail() {
 	let email = document.querySelector("input[name='email']").value;
 	let type2 = document.querySelector("input[name='type2']").value;
 	let emailAuth = document.querySelector("#emailAuth");
-	console.log(email);
-	console.log(type2);
 
 	request.open("POST", "sendIdToEmail", true);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -126,7 +124,7 @@ function sendIdToEmail() {
 		if (request.readyState === 4) {
 			if (request.status === 200) {
 				alert("귀하의 이메일 주소로 가입된 아이디를 발송 하였습니다");
-				console.log(request.responseText);
+				emailAuth.innerHTML = "";
 			} else if (request.status === 404) {
 				emailAuth.innerHTML = "입력한 회원정보로 가입한 계정이 없습니다";
 				emailAuth.style.color = "red";
@@ -140,9 +138,9 @@ function sendIdToEmail() {
 function sendPassToEmail() {
 	let email = document.getElementById("email").value;
 	let id = document.getElementById("id").value;
-	let emailAuth = document.querySelector("#emailAuth2");
-	console.log(email);
+	let emailAuth2 = document.querySelector("#emailAuth2");
 	let type2 = document.querySelector("input[name='type2']").value;
+
 	request.open("POST", "sendPassToEmail", true);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -150,7 +148,7 @@ function sendPassToEmail() {
 		if (request.readyState === 4) {
 			if (request.status === 200) {
 				alert("귀하의 이메일 주소로 임시 비밀번호를 발송 하였습니다");
-				console.log(request.responseText);
+				emailAuth2.innerHTML = "";
 			} else if (request.status === 404) {
 				emailAuth2.innerHTML = "입력한 회원정보로 가입한 계정이 없습니다";
 				emailAuth2.style.color = "red";
