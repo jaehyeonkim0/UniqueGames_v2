@@ -34,18 +34,22 @@ public class JoinController {
 	public String companyJoin(Company company) { return "join/company-join"; }
 
 	@PostMapping("join")
-	public String joinProc(@Valid Member member, Errors errors, Model model) {
+	public String joinProc(Member member, Model model) {
+		//member-join.html에서 넘어온 input name = file인 file을 받아
+		//파일이 있는지 확인 후, 있으면 업로드용 이미지 이름 추출
 		String fileName = memberService.fileCheck(member.getFile());
+		//memberDto에 String profileImg set
 		member.setProfileImg(fileName);
+
 		int result = memberService.save(member);
 		if(result == 1) {
-			memberService.fileSave();
-			model.addAttribute("result", "join");
-			model.addAttribute("url", "/login");
+			memberService.fileSave(); //directory에 파일 저장
+			//login.html로 가서 script 코드 실행
+//			model.addAttribute("result", "join");
 		}else {
 			return "redirect:/";
 		}
-		return "login/login";
+		return "redirect:/login";
 	}
 	@PostMapping("joincompany")
 	public String joinCompanyProc(Company company, Model model) {
@@ -54,11 +58,11 @@ public class JoinController {
 		int result = companyMemberService.save(company);
 		if(result == 1) {
 			companyMemberService.fileSave();
-			model.addAttribute("result", "join");
-			model.addAttribute("url", "/login");
+//			model.addAttribute("result", "join");
 		}else {
 			return "redirect:/";
 		}
-		return "login/login";
+		return "redirect:/login";
 	}
+
 }
