@@ -16,13 +16,14 @@
     if(result == "change") {
       alert("비밀번호 변경 성공");
       location.href= url;
-    }else if(result == "join") {
-      alert("회원가입 성공");
-      location.href= url;
     }else if(result == "login") {
       alert("로그인 실패");
       location.href= url;
     }
+    // else if(result == "join") {
+    //   alert("회원가입 성공");
+    //   location.href= url;
+    // }
 
     /*]]>*/
   </script>
@@ -45,14 +46,14 @@
   <input id="company-login" type="radio" name="loginSelect">
   <label for="company-login" id="company-login-tab">법인 회원</label>
 
-  <form th:action="@{/login(redirectURL=${param.redirectURL})}" method="post" th:object="${member}" name="memberForm" id="individual-loginForm">
+  <form th:action="@{/login(redirectURL=${param.redirectURL})}" method="post" name="memberForm" id="individual-loginForm">
     <div>
       <ul>
         <li>
-          <input type="text" name="memberId" placeholder="아이디" th:value="${member?.memberId}">
+          <input type="text" name="memberId" placeholder="아이디">
         </li>
         <li>
-          <input type="password" name="password" placeholder="비밀번호" size="15" th:value="${member?.password}">
+          <input type="password" name="password" placeholder="비밀번호" size="15">
         </li>
         <span id="login-result"></span>
         <li>
@@ -69,14 +70,14 @@
     </div>
   </form>
 
-  <form th:action="@{/login(redirectURL=${param.redirectURL})}" th:method="post" th:object="${company}" name="companyForm" id="company-loginForm">
+  <form th:action="@{/login(redirectURL=${param.redirectURL})}" th:method="post" name="companyForm" id="company-loginForm">
     <div>
       <ul>
         <li>
-          <input type="text" name="companyId" placeholder="법인 아이디" th:value="${company?.companyId}">
+          <input type="text" name="companyId" placeholder="법인 아이디">
         </li>
         <li>
-          <input type="password" name="password" placeholder="비밀번호" id="companyPass" size="15" th:value="${company?.password}">
+          <input type="password" name="password" placeholder="비밀번호" id="companyPass" size="15">
         </li>
         <li>
           <button type="button" class="button-gradient" id="companylogin" onclick="companyIdPassCheck()">LOGIN</button>
@@ -92,7 +93,8 @@
 </section>
 <!--footer-->
 <div th:replace="main/footer::footerFragment"></div>
-<script th:src="@{/js/jquery-3.6.4.min.js}"></script>
-<script th:src="@{/js/login_script.js}"></script>
 </body>
 </html>
+<script th:if="${param.alert == 'join'}">
+  alert('회원가입 성공');
+</script>

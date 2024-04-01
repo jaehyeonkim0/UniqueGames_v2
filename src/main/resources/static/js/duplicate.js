@@ -34,7 +34,7 @@ $(document).ready(function(){
                         }
                         return false;
                     }else {
-                        $("#emailMsg").css("color", "initial").css("display","none");
+                        $("#emailMsg").text("").css("color", "initial").css("display","none");
                     }
                 }
             });
